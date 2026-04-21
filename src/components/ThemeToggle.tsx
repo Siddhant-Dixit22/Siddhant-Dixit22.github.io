@@ -33,7 +33,7 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground hover:text-accent hover:border-accent transition-colors"
+      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/90 backdrop-blur text-foreground shadow-md hover:text-accent hover:border-accent transition-colors"
       suppressHydrationWarning
     >
       <Icon name={isDark ? "sun" : "moon"} size={16} />
