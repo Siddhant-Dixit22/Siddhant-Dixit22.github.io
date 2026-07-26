@@ -7,95 +7,73 @@ import ThemeToggle from "./ThemeToggle";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState("");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 12);
+      const sections = navLinks
+        .map((link) => document.querySelector(link.href))
+        .filter((section): section is HTMLElement => section instanceof HTMLElement);
+      const current = sections.find((section) => {
+        const rect = section.getBoundingClientRect();
+        return rect.top <= 180 && rect.bottom > 180;
+      });
+      setActive(current ? `#${current.id}` : "");
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all ${
-        scrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-border"
-          : "bg-transparent"
-      }`}
-    >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a
-          href="#top"
-          className="font-mono text-sm font-medium text-foreground hover:text-accent transition-colors"
-        >
-          {personal.name.split(" ").map((w) => w[0]).join("")}
-          <span className="text-accent">.</span>
+    <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
+      <nav className="masthead" aria-label="Primary navigation">
+        <a href="#top" className="monogram" aria-label={`${personal.name} home`}>
+          SD<span>.</span>
         </a>
 
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="desktop-nav">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <a
-                href={link.href}
-                className="text-sm text-muted hover:text-foreground transition-colors"
-              >
+              <a href={link.href} className={active === link.href ? "is-active" : ""}>
                 {link.label}
               </a>
             </li>
           ))}
         </ul>
 
-        <div className="flex items-center gap-3">
-          <a
-            href={personal.resumeHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-sm font-medium text-foreground hover:border-accent hover:text-accent transition-colors"
-          >
-            Resume
+        <div className="masthead-actions">
+          <a href={personal.resumeHref} target="_blank" rel="noopener noreferrer" className="resume-link">
+            Resume <span aria-hidden="true">↗</span>
           </a>
           <ThemeToggle />
           <button
             type="button"
-            onClick={() => setOpen(!open)}
+            onClick={() => setOpen((value) => !value)}
             aria-label="Toggle menu"
             aria-expanded={open}
-            className="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-full border border-border"
+            className="menu-toggle"
           >
             <span className="sr-only">Menu</span>
-            <div className="flex flex-col gap-1">
-              <span className={`block h-0.5 w-4 bg-foreground transition-transform ${open ? "translate-y-1.5 rotate-45" : ""}`} />
-              <span className={`block h-0.5 w-4 bg-foreground transition-opacity ${open ? "opacity-0" : ""}`} />
-              <span className={`block h-0.5 w-4 bg-foreground transition-transform ${open ? "-translate-y-1.5 -rotate-45" : ""}`} />
-            </div>
+            <span className={open ? "menu-bars open" : "menu-bars"} aria-hidden="true">
+              <i /><i /><i />
+            </span>
           </button>
         </div>
       </nav>
 
       {open && (
-        <div className="md:hidden border-t border-border bg-background">
-          <ul className="flex flex-col px-6 py-4 gap-4">
+        <div className="mobile-nav">
+          <ul>
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="block text-sm text-muted hover:text-foreground transition-colors"
-                >
+                <a href={link.href} onClick={() => setOpen(false)} className={active === link.href ? "is-active" : ""}>
                   {link.label}
                 </a>
               </li>
             ))}
-            <li>
-              <a
-                href={personal.resumeHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-sm text-accent"
-              >
-                Resume ↗
-              </a>
-            </li>
+            <li><a href={personal.resumeHref} target="_blank" rel="noopener noreferrer" className="mobile-resume">Resume ↗</a></li>
           </ul>
         </div>
       )}

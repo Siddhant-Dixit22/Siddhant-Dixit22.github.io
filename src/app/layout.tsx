@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { DM_Serif_Display, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,15 +12,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const dmSerif = DM_Serif_Display({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: "400",
+});
+
 export const metadata: Metadata = {
-  title: "Siddhant Dixit — Full-Stack Developer",
+  title: "Siddhant Dixit | Software & Data Builder",
   description:
-    "Computer Science student at Michigan State University building full-stack applications and autonomous systems.",
+    "Siddhant Dixit is a Computer Science student building reliable data platforms, applied ML systems, and polished web products.",
   metadataBase: new URL("https://siddhant-dixit22.github.io"),
   openGraph: {
-    title: "Siddhant Dixit — Full-Stack Developer",
+    title: "Siddhant Dixit | Software & Data Builder",
     description:
-      "Computer Science student at Michigan State University building full-stack applications and autonomous systems.",
+      "Computer Science student building reliable data platforms, applied ML systems, and polished web products.",
     type: "website",
   },
 };
@@ -47,7 +53,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${dmSerif.variable} antialiased`}
         suppressHydrationWarning
       >
         {children}

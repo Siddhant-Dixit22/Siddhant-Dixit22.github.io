@@ -3,17 +3,13 @@
 import { useSyncExternalStore } from "react";
 import Icon from "./Icon";
 
-const subscribe = (cb: () => void) => {
-  const observer = new MutationObserver(cb);
-  observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ["class"],
-  });
+const subscribe = (callback: () => void) => {
+  const observer = new MutationObserver(callback);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
   return () => observer.disconnect();
 };
 
-const getSnapshot = () =>
-  document.documentElement.classList.contains("dark") ? "dark" : "light";
+const getSnapshot = () => document.documentElement.classList.contains("dark") ? "dark" : "light";
 const getServerSnapshot = () => "light" as const;
 
 export default function ThemeToggle() {
@@ -23,20 +19,12 @@ export default function ThemeToggle() {
   const toggle = () => {
     const next = !isDark;
     document.documentElement.classList.toggle("dark", next);
-    try {
-      localStorage.setItem("theme", next ? "dark" : "light");
-    } catch {}
+    try { localStorage.setItem("theme", next ? "dark" : "light"); } catch {}
   };
 
   return (
-    <button
-      type="button"
-      onClick={toggle}
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/90 backdrop-blur text-foreground shadow-md hover:text-accent hover:border-accent transition-colors"
-      suppressHydrationWarning
-    >
-      <Icon name={isDark ? "sun" : "moon"} size={16} />
+    <button type="button" onClick={toggle} aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"} className="theme-switch" suppressHydrationWarning>
+      <Icon name={isDark ? "sun" : "moon"} size={15} />
     </button>
   );
 }

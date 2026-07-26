@@ -16,6 +16,7 @@ export type Project = {
   highlights: string[];
   start: string;
   end: string;
+  visual: "market" | "billing" | "flight";
   href?: string;
 };
 
@@ -116,6 +117,7 @@ export const projects: Project[] = [
     ],
     start: "Jul 2026",
     end: "Present",
+    visual: "market",
   },
   {
     name: "IntelliPay",
@@ -131,6 +133,7 @@ export const projects: Project[] = [
     ],
     start: "Oct 2025",
     end: "Present",
+    visual: "billing",
   },
   {
     name: "Flight Path Optimization",
@@ -145,6 +148,7 @@ export const projects: Project[] = [
     ],
     start: "Sep 2025",
     end: "Present",
+    visual: "flight",
   },
 ];
 

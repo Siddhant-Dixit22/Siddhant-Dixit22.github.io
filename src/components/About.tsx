@@ -1,50 +1,31 @@
-import { about, education } from "@/lib/data";
+import { about, education, personal } from "@/lib/data";
 import Reveal from "./Reveal";
-import SectionHeading from "./SectionHeading";
 
 export default function About() {
   return (
-    <section id="about" className="scroll-mt-24 py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-6">
-        <Reveal>
-          <SectionHeading kicker="01 / about" title="About me" />
-        </Reveal>
-
-        <div className="grid gap-12 md:grid-cols-[2fr_1fr]">
-          <Reveal>
-            <div className="space-y-4 text-muted leading-relaxed text-lg">
-              {about.map((para, i) => (
-                <p key={i}>{para}</p>
-              ))}
+    <section id="about" className="section about-section">
+      <div className="section-shell">
+        <Reveal><div className="section-label"><span>01</span> About</div></Reveal>
+        <div className="about-layout">
+          <Reveal><div>
+            <h2 className="section-title">I build systems that turn <em>complexity</em> into clarity.</h2>
+            <div className="about-copy">{about.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
+          </div></Reveal>
+          <Reveal delay={100}><aside className="about-notes" aria-label="Education and current focus">
+            <div className="note-block">
+              <p className="note-label">Currently</p>
+              <p className="note-value">{personal.availability}</p>
             </div>
-          </Reveal>
-
-          <Reveal delay={120}>
-            <aside className="rounded-2xl border border-border bg-card p-6">
-              <h3 className="font-mono text-xs uppercase tracking-wider text-accent mb-3">
-                Education
-              </h3>
-              <p className="text-foreground font-medium">{education.school}</p>
-              <p className="text-sm text-muted mt-1">{education.degree}</p>
-              <p className="text-sm text-muted mt-1">
-                {education.graduation} · GPA {education.gpa}
-              </p>
-
-              <h4 className="mt-6 font-mono text-xs uppercase tracking-wider text-accent mb-3">
-                Coursework
-              </h4>
-              <ul className="flex flex-wrap gap-1.5">
-                {education.coursework.map((c) => (
-                  <li
-                    key={c}
-                    className="rounded-full border border-border px-2.5 py-1 text-xs text-muted"
-                  >
-                    {c}
-                  </li>
-                ))}
-              </ul>
-            </aside>
-          </Reveal>
+            <div className="note-block">
+              <p className="note-label">Education</p>
+              <p className="note-value">{education.school}</p>
+              <p className="note-detail">{education.degree}<br />{education.graduation} / GPA {education.gpa}</p>
+            </div>
+            <div className="note-block">
+              <p className="note-label">Relevant study</p>
+              <p className="note-detail">{education.coursework.slice(0, 6).join(" / ")}</p>
+            </div>
+          </aside></Reveal>
         </div>
       </div>
     </section>
