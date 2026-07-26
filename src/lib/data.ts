@@ -23,18 +23,18 @@ export const personal = {
   name: "Siddhant Dixit",
   title: "Computer Science @ Michigan State University",
   tagline:
-    "Full-stack developer building performant web apps and autonomous systems.",
+    "Building reliable data platforms, applied ML systems, and polished web products.",
   location: "East Lansing, MI",
   email: "dixit.siddhant22@gmail.com",
   github: "https://github.com/Siddhant-Dixit22",
   linkedin: "https://www.linkedin.com/in/siddhant-dixit22",
   resumeHref: "/Siddhant_Dixit_Resume_v8.pdf",
-  availability: "Open to SWE internships for Summer 2026",
+  availability: "Open to software engineering and data-focused opportunities",
 };
 
 export const about = [
-  "I'm a junior at Michigan State University studying Computer Science, with a focus on full-stack engineering, distributed systems, and applied algorithms.",
-  "Lately I've been building a centralized LLM billing dashboard (IntelliPay), a marketplace for independent artists (OpenVerse), and drone path-planning software for MSU Unmanned Systems. I care about fast APIs, clear data models, and interfaces that feel obvious.",
+  "I'm a Computer Science student at Michigan State University focused on data engineering, applied machine learning, and full-stack software development.",
+  "Most recently, I built a production data-quality toolkit and monitoring system at FordDirect. Outside of work, I'm building MarketLens, a news-aware stock forecasting platform. I care about dependable data systems, measurable model performance, and interfaces that make complex information clear.",
 ];
 
 export const education = {
@@ -42,7 +42,7 @@ export const education = {
   degree: "B.S. in Computer Science",
   location: "East Lansing, MI",
   graduation: "Expected May 2027",
-  gpa: "3.71",
+  gpa: "3.68",
   coursework: [
     "Data Structures & Algorithms",
     "Computer Organization & Architecture",
@@ -51,22 +51,40 @@ export const education = {
     "Information Management & the Cloud",
     "Linear Algebra",
     "Discrete Mathematics",
+    "Probability & Statistics",
+    "Biometrics & Pattern Recognition",
+    "Introduction to Machine Learning",
+    "Artificial Intelligence",
+    "AI Agents",
   ],
 };
 
 export const experience: Experience[] = [
+  {
+    role: "Data Services & IT Ops Intern",
+    company: "FordDirect",
+    location: "Dearborn, MI",
+    start: "Jun 2026",
+    end: "Aug 2026",
+    highlights: [
+      "Delivered a Databricks Labs DQX (PySpark) data-quality toolkit as a Python wheel across CJP and EID ingestion pipelines, loading governed rules, splitting valid and invalid records, and automatically provisioning Delta quarantine tables per source.",
+      "Designed a universal rule framework with parameterized check templates, versioned rule resolution, and hash-based deduplication, enabling approved rules to validate arbitrary datasets without re-quarantining records.",
+      "Built automated monitoring and alerting that sends daily Microsoft Teams Adaptive Card notifications from validation metrics, giving the platform team same-morning visibility into failing rules across monitored tables.",
+      "Established feedback loops between quarantine outcomes and rule tuning, sustaining 95%+ classification model accuracy; also extended the internal DQX Studio UI and metadata-driven rule generator.",
+    ],
+  },
   {
     role: "Freelance Full-Stack Developer",
     company: "OpenVerse",
     subtitle: "Client Project",
     location: "East Lansing, MI",
     start: "Sep 2025",
-    end: "Present",
+    end: "May 2026",
     highlights: [
-      "Developed a full-stack marketplace connecting independent artists with buyers — artist profiles, product listings, and integrated payment processing.",
-      "Built a responsive React frontend and Python FastAPI backend; designed 15+ RESTful endpoints for auth, user management, and Stripe payment integration.",
-      "Architected a Supabase PostgreSQL database with Row Level Security to enforce role-based access for user data.",
-      "Containerized the full-stack app with Docker to streamline local dev and deployment.",
+      "Developed a full-stack marketplace connecting independent artists with buyers, including artist profiles, product listings, and integrated payment processing.",
+      "Built a responsive React frontend and Python FastAPI backend; designed and documented 15+ RESTful endpoints for authentication, user management, and Stripe payment integration.",
+      "Architected a Supabase PostgreSQL database with Row Level Security to enforce secure, role-based access for authentication and data management.",
+      "Containerized the full-stack application with Docker to streamline local development and simplify deployment workflows.",
     ],
   },
   {
@@ -76,25 +94,40 @@ export const experience: Experience[] = [
     start: "May 2025",
     end: "Aug 2025",
     highlights: [
-      "Built a client-facing presentation analyzing AI-integration feasibility in a pharmacy company's educational systems, delivering data-driven adoption recommendations.",
-      "Analyzed 10+ Excel datasets covering server usage, cost data, VM utilization, and legacy system records across global locations.",
-      "Synthesized server health logs and usage trends into a 50+ slide infrastructure report recommending server consolidation, VM optimization, and legacy migration.",
+      "Developed a client-facing presentation analyzing the feasibility of AI integration in a pharmacy company's educational systems, delivering data-driven adoption recommendations.",
+      "Analyzed 10+ Excel datasets containing server usage metrics, cost data, virtual machine utilization, and legacy system records across global locations.",
+      "Synthesized server health logs, usage trends, and cost data into a 50+ slide infrastructure report with recommendations for server consolidation, VM optimization, and legacy system migration.",
     ],
   },
 ];
 
 export const projects: Project[] = [
   {
+    name: "MarketLens",
+    tagline: "News-aware stock forecasting platform",
+    description:
+      "Fuses quantitative time-series features with retrieval-augmented market context to generate probabilistic next-day and five-day trading signals for liquid equities.",
+    stack: ["Python", "FastAPI", "React", "TypeScript", "PostgreSQL", "pgvector"],
+    highlights: [
+      "End-to-end ML pipeline for price and news ingestion, feature engineering, walk-forward validation, and backtesting against baseline strategies",
+      "Evaluation reports directional accuracy, precision, recall, and calibration metrics across 15+ liquid equities",
+      "Retrieval system embeds financial news, ranks evidence by ticker and date relevance, and grounds each prediction explanation in cited sources",
+      "React dashboard with per-stock views, signal-confidence visualization, evidence-linked explanations, and interactive backtest results",
+    ],
+    start: "Jul 2026",
+    end: "Present",
+  },
+  {
     name: "IntelliPay",
     tagline: "Centralized LLM billing dashboard",
     description:
-      "Consolidates API usage across OpenAI, Anthropic, and other LLM providers with real-time cost tracking, usage-based billing, and detailed transaction logs.",
+      "Consolidates API usage across LLM providers with real-time cost tracking, subscription and usage-based billing, and detailed transaction logs.",
     stack: ["React", "TypeScript", "Python", "FastAPI", "PostgreSQL", "Stripe", "Docker"],
     highlights: [
-      "Real-time cost tracking across multiple LLM providers",
-      "APIs under 300ms for standard ops; sub-second analytics via optimized Postgres indexing",
-      "Stripe webhooks for subscription + usage-based billing",
-      "CI/CD via GitHub Actions",
+      "Real-time cost tracking across providers including OpenAI and Anthropic",
+      "Optimized PostgreSQL indexing for standard API operations under 300ms and sub-second analytics queries",
+      "Integrated Stripe payment processing and webhooks for subscription and usage-based billing",
+      "Containerized the app and deployed it through a GitHub Actions CI/CD pipeline",
     ],
     start: "Oct 2025",
     end: "Present",
@@ -103,12 +136,12 @@ export const projects: Project[] = [
     name: "Flight Path Optimization",
     tagline: "MSU Unmanned Systems",
     description:
-      "Autonomous flight path planner for drones over agricultural fields. Uses simulated annealing to generate optimized coverage paths while respecting battery constraints.",
+      "Autonomous flight-path planner for agricultural drone coverage using simulated annealing and battery-aware navigation.",
     stack: ["Python", "C++", "Simulated Annealing"],
     highlights: [
-      "~15% reduction in redundant coverage while guaranteeing full field traversal",
-      "Battery monitoring + return-to-base logic prevents mid-flight depletion",
-      "Tested across varied field geometries with ~15% flight-time savings vs. baseline",
+      "Designed a simulated-annealing path-finding algorithm that reduced redundant coverage by 15% while ensuring complete field traversal",
+      "Integrated battery monitoring and return-to-base logic with real-time state management to prevent mid-flight depletion",
+      "Simulated and tested paths across varied field geometries, reducing flight time by approximately 15% versus baseline algorithms",
     ],
     start: "Sep 2025",
     end: "Present",
@@ -132,11 +165,17 @@ export const skills = {
     "GitHub Actions",
     "CI/CD Pipelines",
     "Postman",
-    "AWS",
+    "PySpark",
+    "Databricks",
+    "Delta Lake",
+    "Spark SQL",
   ],
 };
 
-export const certifications = ["AWS Certified Cloud Practitioner"];
+export const certifications = [
+  "AWS Certified Cloud Practitioner",
+  "IBM AI Engineering Professional Certificate",
+];
 
 export const navLinks = [
   { label: "About", href: "#about" },

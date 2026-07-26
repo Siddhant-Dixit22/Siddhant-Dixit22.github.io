@@ -32,24 +32,28 @@ export default function Skills() {
           ))}
         </div>
 
-        <Reveal delay={220}>
-          <div className="mt-6 rounded-2xl border border-accent/40 bg-accent-soft/30 p-6 flex items-center gap-4">
-            <div
-              aria-hidden
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/20 font-mono text-sm font-bold text-accent"
-            >
-              ✓
-            </div>
-            <div>
-              <p className="font-mono text-xs uppercase tracking-wider text-accent">
-                Certifications
-              </p>
-              <p className="text-foreground font-medium mt-0.5">
-                {certifications.join(" · ")}
-              </p>
-            </div>
+        <div className="mt-6">
+          <Reveal delay={220}>
+            <h3 className="font-mono text-xs uppercase tracking-wider text-accent mb-4">
+              Certifications
+            </h3>
+          </Reveal>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {certifications.map((certification, i) => (
+              <Reveal key={certification} delay={260 + i * 70}>
+                <div className="rounded-2xl border border-accent/40 bg-accent-soft/30 p-5 flex items-center gap-4">
+                  <div
+                    aria-hidden
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent/20 font-mono text-sm font-bold text-accent"
+                  >
+                    ✓
+                  </div>
+                  <p className="text-foreground font-medium">{certification}</p>
+                </div>
+              </Reveal>
+            ))}
           </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );
